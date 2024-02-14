@@ -30,6 +30,7 @@ let a = 200;
 let b = 100;
 let squareLength = a + b;
 
+
 const triangle1 = new PIXI.Graphics();
 const triangle2 = new PIXI.Graphics();
 const triangle3 = new PIXI.Graphics();
@@ -61,6 +62,8 @@ shapeContainer.beginFill(0xa485b3);
 shapeContainer.drawPolygon([0, 0, 0, a + b, a + b, a + b, a + b, 0]);
 shapeContainer.lineStyle(2, 0xffffff);
 shapeContainer.endFill();
+
+function pythVisualize(a,b,squareLength){
 
 shapeContainer.x = app.stage.width / 2 - squareLength / 2;
 shapeContainer.y = app.stage.height / 2 + squareLength;
@@ -179,6 +182,10 @@ shapeContainer.addChild(triangle4);
   // Add the control point to the shape container
   shapeContainer.addChild(controlPoint);
 shapeContainer.addChild(controlPoint);
+}
+
+
+pythVisualize(a,b,squareLength);
 
 triangleBaseControler = false;
 triangleHeightControler = false;
@@ -196,7 +203,7 @@ triangle1.addChild(controlPoint1);
 // Event listener to adjust only horizontal value
 
 
-controlPoint1.on('pointerdown', (event) => {
+let controlPoint1Check=controlPoint1.on('pointerdown', (event) => {
   const originalPosition = event.data.getLocalPosition(triangle1.parent);
   const originalWidth = triangle1.width; // Get the initial width of the triangle
 
@@ -206,8 +213,7 @@ controlPoint1.on('pointerdown', (event) => {
 
       // Update the width of the triangle based on the horizontal movement
       triangle1.width = Math.max(originalWidth + dx, 100); // Ensure the width doesn't become negative
-      b = triangle1.width;
-      
+     
       // dont cross the square length
       if(triangle1.width > squareLength){
         triangle1.width = squareLength;
@@ -216,7 +222,6 @@ controlPoint1.on('pointerdown', (event) => {
       if(triangle1.width> triangle2.x){
         triangle1.width = triangle2.x+20;
       }
-
   };
 
   const onPointerUp = () => {
@@ -229,14 +234,13 @@ controlPoint1.on('pointerdown', (event) => {
 });
 
 
-const controlPoint2 = new PIXI.Graphics();
-controlPoint2.beginFill(0x0000FF); // Color of the control point
-controlPoint2.drawCircle(-5, -15, 10); // Adjust size as needed
-controlPoint2.endFill();
-controlPoint2.interactive = true;
-controlPoint2.buttonMode = true;
-controlPoint2.position.set(0, 0); // Position at the bottom-right corner
-triangle1.addChild(controlPoint2);
+
+
+
+
+
+
+
 
 
 
