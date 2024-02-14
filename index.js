@@ -71,7 +71,6 @@ shapeContainer.addChild(triangle2);
 shapeContainer.addChild(triangle3);
 shapeContainer.addChild(triangle4);
 
-function pythVisualizer(a, b, squareLength) {
   //position define in the square
   triangle1.y = a;
   triangle2.x = a;
@@ -179,12 +178,8 @@ function pythVisualizer(a, b, squareLength) {
 
   // Add the control point to the shape container
   shapeContainer.addChild(controlPoint);
-
-  
 shapeContainer.addChild(controlPoint);
 
-
-//check control point touch 
 triangleBaseControler = false;
 triangleHeightControler = false;
 
@@ -242,6 +237,17 @@ controlPoint2.interactive = true;
 controlPoint2.buttonMode = true;
 controlPoint2.position.set(0, 0); // Position at the bottom-right corner
 triangle1.addChild(controlPoint2);
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
