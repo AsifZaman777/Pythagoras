@@ -183,38 +183,65 @@ function pythVisualizer(a, b, squareLength) {
   
 shapeContainer.addChild(controlPoint);
 
+
+//check control point touch 
+triangleBaseControler = false;
+triangleHeightControler = false;
+
+// add two control points for the triangle1 to change the a and b value 
+const controlPoint1 = new PIXI.Graphics();
+controlPoint1.beginFill(0x0000FF); // Color of the control point
+controlPoint1.drawCircle(-15, -5, 10); // Adjust size as needed
+controlPoint1.endFill();
+controlPoint1.interactive = true;
+controlPoint1.buttonMode = true;
+controlPoint1.position.set(triangle1.width, triangle1.height); // Position at the bottom-right corner
+triangle1.addChild(controlPoint1);
+
+// Event listener to adjust only horizontal value
+
+
+controlPoint1.on('pointerdown', (event) => {
+  const originalPosition = event.data.getLocalPosition(triangle1.parent);
+  const originalWidth = triangle1.width; // Get the initial width of the triangle
+
+  const onPointerMove = (event) => {
+      const newPosition = event.data.getLocalPosition(triangle1.parent); // Get the current position of the pointer
+      const dx = newPosition.x - originalPosition.x; // Calculate the horizontal movement
+
+      // Update the width of the triangle based on the horizontal movement
+      triangle1.width = Math.max(originalWidth + dx, 100); // Ensure the width doesn't become negative
+      b = triangle1.width;
+      
+      // dont cross the square length
+      if(triangle1.width > squareLength){
+        triangle1.width = squareLength;
+      }
+      //dont cross triangle2 
+      if(triangle1.width> triangle2.x){
+        triangle1.width = triangle2.x+20;
+      }
+
+  };
+
+  const onPointerUp = () => {
+      app.renderer.plugins.interaction.off('pointermove', onPointerMove);
+      app.renderer.plugins.interaction.off('pointerup', onPointerUp);
+  };
+
+  app.renderer.plugins.interaction.on('pointermove', onPointerMove);
+  app.renderer.plugins.interaction.on('pointerup', onPointerUp);
+});
+
+
+const controlPoint2 = new PIXI.Graphics();
+controlPoint2.beginFill(0x0000FF); // Color of the control point
+controlPoint2.drawCircle(-5, -15, 10); // Adjust size as needed
+controlPoint2.endFill();
+controlPoint2.interactive = true;
+controlPoint2.buttonMode = true;
+controlPoint2.position.set(0, 0); // Position at the bottom-right corner
+triangle1.addChild(controlPoint2);
 }
-
-pythVisualizer(a,b,squareLength);
-
-//control points in the triangle1 
-const b_pointControlPanel = new PIXI.Graphics();
-b_pointControlPanel.beginFill(0x0000ff); // Color of the control point
-b_pointControlPanel.drawCircle(0, 0, 10); // Adjust size as needed
-b_pointControlPanel.endFill();
-b_pointControlPanel.interactive = true;
-b_pointControlPanel.buttonMode = true;
-b_pointControlPanel.position.set(0,0 ); // Position at the bottom-right corner
-
-const a_pointControlPanel = new PIXI.Graphics();
-a_pointControlPanel.beginFill(0x000000); // Color of the control point
-a_pointControlPanel.drawCircle(0, 0, 10); // Adjust size as needed
-a_pointControlPanel.endFill();
-a_pointControlPanel.interactive = true;
-a_pointControlPanel.buttonMode = true;
-a_pointControlPanel.position.set(triangle1.width,triangle1.height ); // Position at the bottom-right corner
-
-// add the control points in the triangle1 
-triangle1.addChild(a_pointControlPanel);
-triangle1.addChild(b_pointControlPanel);
-
-
-
-
-
-
-
-
-
 
 
