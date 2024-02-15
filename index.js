@@ -148,7 +148,7 @@ triangle3.beginFill(0x8d1414); // Fill color
 triangle3.lineStyle(1, 0xffffff);
 triangle4.beginFill(0x8d1414); // Fill color
 triangle4.lineStyle(1, 0xffffff);
-shapeContainer.beginFill(0xa485b3);
+shapeContainer.beginFill(0xFAEBB3);
 shapeContainer.lineStyle(2, 0xffffff);
 // shapeContainer.endFill();
 
