@@ -73,7 +73,7 @@ shapeContainer.addChild(controlPoint2);
 //button create
 const submitButton = new PIXI.Graphics();
 submitButton.beginFill(0x29968A);
-submitButton.drawRect(0, 0, 400, 60); // Adjust size as needed
+submitButton.drawRoundedRect(0, 0, 400, 60, 60); // Adjust size as needed
 submitButton.position.set(
   (app.renderer.width - 350) / 2,
   app.renderer.height - 200
@@ -84,7 +84,7 @@ submitButton.buttonMode = true;
 //button create
 const resetButton = new PIXI.Graphics();
 resetButton.beginFill(0x29968A);
-resetButton.drawRect(0, 0, 400, 60); // Adjust size as needed
+resetButton.drawRoundedRect(0, 0, 400, 60, 60); // Adjust size as needed
 resetButton.position.set(
   (app.renderer.width - 350) / 2,
   app.renderer.height - 100
